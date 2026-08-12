@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Velocity | Our Cars</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        /* =========================
+           CARS PAGE
+        ========================= */
+
+        .cars-page {
+
+            min-height: 100vh;
+
+            padding-top: 150px;
+            padding-bottom: 100px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(79,140,255,.12),
+                    transparent 30%
+                ),
+                #08090c;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .cars-header {
+
+            margin-bottom: 55px;
+
+        }
+
+
+        .cars-tag {
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: rgba(255,255,255,.45);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        .cars-tag span {
+
+            width: 35px;
+            height: 1px;
+
+            background: #4f8cff;
+
+        }
+
+
+        .cars-header h1 {
+
+            margin-top: 20px;
+
+            max-width: 900px;
+
+            font-size: clamp(50px, 7vw, 90px);
+
+            line-height: .95;
+
+            letter-spacing: -5px;
+
+            font-weight: 800;
+
+        }
+
+
+        .cars-header h1 span {
+
+            color: transparent;
+
+            -webkit-text-stroke: 1px white;
+
+        }
+
+
+        .cars-header p {
+
+            max-width: 600px;
+
+            margin-top: 25px;
+
+            color: rgba(255,255,255,.5);
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =========================
+           CATEGORY FILTER
+        ========================= */
+
+        .category-filter {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .category-btn {
+
+            padding: 11px 20px;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,.03);
+
+            color: rgba(255,255,255,.5);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .3s ease;
+
+        }
+
+
+        .category-btn:hover {
+
+            color: white;
+
+            border-color: rgba(79,140,255,.5);
+
+        }
+
+
+        .category-btn.active {
+
+            color: #08090c;
+
+            background: white;
+
+            border-color: white;
+
+        }
+
+
+        /* =========================
+           CAR ITEM
+        ========================= */
+
+        .car-item {
+
+            transition:
+                opacity .4s ease,
+                transform .4s ease;
+
+        }
+
+
+        .car-item.hide {
+
+            opacity: 0;
+
+            transform: scale(.94);
+
+            pointer-events: none;
+
+            display: none;
+
+        }
+
+
+        /* =========================
+           CAR CARD
+        ========================= */
+
+        .car-card {
+
+            overflow: hidden;
+
+            height: 100%;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 25px;
+
+            background: #101114;
+
+            transition: .4s ease;
+
+        }
+
+
+        .car-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: rgba(79,140,255,.45);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,.3);
+
+        }
+
+
+        /* =========================
+           CAR IMAGE
+        ========================= */
+
+        .car-image {
+
+            position: relative;
+
+            height: 260px;
+
+            overflow: hidden;
+
+            background: #15161a;
+
+        }
+
+
+        .car-image img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: .7s ease;
+
+        }
+
+
+        .car-card:hover .car-image img {
+
+            transform: scale(1.07);
+
+        }
+
+
+        .car-badge {
+
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+
+            z-index: 2;
+
+            padding: 8px 13px;
+
+            border-radius: 50px;
+
+            background: rgba(20,20,20,.75);
+
+            backdrop-filter: blur(10px);
+
+            color: white;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =========================
+           CARD BODY
+        ========================= */
+
+        .car-body {
+
+            padding: 28px 25px 25px;
+
+        }
+
+
+        .car-body h3 {
+
+            margin: 0;
+
+            color: white;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+        }
+
+
+        .car-type {
+
+            margin-top: 7px;
+
+            color: rgba(255,255,255,.4);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+        }
+
+
+        /* =========================
+           SPECS
+        ========================= */
+
+        .car-specs {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+
+        }
+
+
+        .car-spec {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: rgba(255,255,255,.5);
+
+            font-size: 10px;
+
+        }
+
+
+        .car-spec i {
+
+            color: #4f8cff;
+
+        }
+
+
+        /* =========================
+           PRICE
+        ========================= */
+
+        .car-bottom {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-top: 28px;
+
+        }
+
+
+        .car-price small {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: rgba(255,255,255,.3);
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+        }
+
+
+        .car-price strong {
+
+            color: white;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================
+           CONTACT BUTTON
+        ========================= */
+
+        .car-book {
+
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #08090c;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            transition: .3s ease;
+
+        }
+
+
+        .car-book:hover {
+
+            background: #4f8cff;
+
+            color: white;
+
+            transform: rotate(45deg) scale(1.08);
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:576px) {
+
+            .cars-page {
+
+                padding-top: 120px;
+
+            }
+
+
+            .cars-header h1 {
+
+                font-size: 55px;
+
+                letter-spacing: -4px;
+
+            }
+
+
+            .category-filter {
+
+                gap: 7px;
+
+            }
+
+
+            .category-btn {
+
+                padding: 9px 14px;
+
+                font-size: 9px;
+
+            }
+
+
+            .car-image {
+
+                height: 230px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand"
+            href="index.html"
+        >
+
+            VELOCITY<span>.</span>
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+        >
+
+            <i class="bi bi-list"></i>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="index.html"
+                    >
+                        Home
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link active"
+                        href="cars.html"
+                    >
+                        Cars
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="services.html"
+                    >
+                        Services
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="about.html"
+                    >
+                        About
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="contact.html"
+                    >
+                        Contact
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <!-- CONTACT BUTTON -->
+
+            <a
+                href="contact.html"
+                class="btn btn-book"
+            >
+
+                Contact Us
+
+                <i class="bi bi-arrow-up-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================
+     CARS PAGE
+========================= -->
+
+<main class="cars-page">
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <section class="cars-header">
+
+            <div class="cars-tag">
+
+                <span></span>
+
+                OUR FLEET
+
+            </div>
+
+
+            <h1>
+
+                FIND YOUR
+                <span>RIDE.</span>
+
+            </h1>
+
+
+            <p>
+
+                Choose from our selection of reliable,
+                practical, and affordable vehicles.
+                Whether you're traveling alone,
+                with family, or with a group,
+                we have a ride for your journey.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             CATEGORY FILTER
+        ========================= -->
+
+        <div class="category-filter">
+
+            <button
+                class="category-btn active"
+                data-filter="all"
+            >
+                All Cars
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-filter="sedan"
+            >
+                Sedan
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-filter="hatchback"
+            >
+                Hatchback
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-filter="mpv"
+            >
+                MPV
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-filter="suv"
+            >
+                SUV
+            </button>
+
+
+            <button
+                class="category-btn"
+                data-filter="vanbus"
+            >
+                Van Bus
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             CAR GRID
+        ========================= -->
+
+        <div
+            class="row g-4"
+            id="carGrid"
+        >
+
+
+            <!-- =========================
+                 TOYOTA VIOS
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="sedan"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            SEDAN
+                        </span>
+
+                        <img
+                            src="assets/images/vios.jpg"
+                            alt="Toyota Vios"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Toyota Vios
+                        </h3>
+
+                        <div class="car-type">
+                            Compact Sedan
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                5 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱1,500/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TOYOTA WIGO
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="hatchback"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            HATCHBACK
+                        </span>
+
+                        <img
+                            src="assets/images/wigo.jpg"
+                            alt="Toyota Wigo"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Toyota Wigo
+                        </h3>
+
+                        <div class="car-type">
+                            City Hatchback
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                5 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱1,300/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 MITSUBISHI MIRAGE
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="sedan"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            SEDAN
+                        </span>
+
+                        <img
+                            src="assets/images/mirage.jpg"
+                            alt="Mitsubishi Mirage"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Mitsubishi Mirage
+                        </h3>
+
+                        <div class="car-type">
+                            Budget Sedan
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                5 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱1,400/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 HONDA BRIO
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="hatchback"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            HATCHBACK
+                        </span>
+
+                        <img
+                            src="assets/images/brio.jpg"
+                            alt="Honda Brio"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Honda Brio
+                        </h3>
+
+                        <div class="car-type">
+                            Compact Hatchback
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                5 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱1,400/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TOYOTA AVANZA
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="mpv"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            MPV
+                        </span>
+
+                        <img
+                            src="assets/images/avanza.jpg"
+                            alt="Toyota Avanza"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Toyota Avanza
+                        </h3>
+
+                        <div class="car-type">
+                            Family MPV
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                7 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱2,000/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 MITSUBISHI XPANDER
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="mpv"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            MPV
+                        </span>
+
+                        <img
+                            src="assets/images/xpander.jpg"
+                            alt="Mitsubishi Xpander"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Mitsubishi Xpander
+                        </h3>
+
+                        <div class="car-type">
+                            Family MPV
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                7 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱2,500/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TOYOTA RUSH
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="suv"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            SUV
+                        </span>
+
+                        <img
+                            src="assets/images/rush.jpg"
+                            alt="Toyota Rush"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Toyota Rush
+                        </h3>
+
+                        <div class="car-type">
+                            Compact SUV
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                7 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Gas
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱2,500/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 VAN BUS
+            ========================= -->
+
+            <div
+                class="col-md-6 col-lg-4 car-item"
+                data-category="vanbus"
+            >
+
+                <div class="car-card">
+
+                    <div class="car-image">
+
+                        <span class="car-badge">
+                            VAN BUS
+                        </span>
+
+                        <img
+                            src="assets/images/van.jpg"
+                            alt="Van Bus"
+                        >
+
+                    </div>
+
+
+                    <div class="car-body">
+
+                        <h3>
+                            Van Bus
+                        </h3>
+
+                        <div class="car-type">
+                            Passenger Van Bus
+                        </div>
+
+
+                        <div class="car-specs">
+
+                            <div class="car-spec">
+                                <i class="bi bi-people"></i>
+                                15 Seats
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-gear"></i>
+                                Auto
+                            </div>
+
+                            <div class="car-spec">
+                                <i class="bi bi-fuel-pump"></i>
+                                Diesel
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-bottom">
+
+                            <div class="car-price">
+
+                                <small>
+                                    Starting from
+                                </small>
+
+                                <strong>
+                                    ₱4,000/day
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="contact.html"
+                                class="car-book"
+                                title="Contact Us"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================
+     FILTER SCRIPT
+========================= -->
+
+<script>
+
+    const categoryButtons =
+        document.querySelectorAll(".category-btn");
+
+    const carItems =
+        document.querySelectorAll(".car-item");
+
+
+    categoryButtons.forEach(button => {
+
+        button.addEventListener("click", function() {
+
+            /* Remove active */
+
+            categoryButtons.forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            /* Add active */
+
+            this.classList.add("active");
+
+
+            /* Get selected category */
+
+            const filter =
+                this.dataset.filter;
+
+
+            /* Filter cars */
+
+            carItems.forEach(car => {
+
+                const category =
+                    car.dataset.category;
+
+
+                if (
+                    filter === "all" ||
+                    category === filter
+                ) {
+
+                    car.classList.remove("hide");
+
+                }
+
+                else {
+
+                    car.classList.add("hide");
+
+                }
+
+            });
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,2099 @@
+/* ==================================================
+   VELOCITY | MAIN STYLE.CSS
+   ================================================== */
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #08090c;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* ==================================================
+   SELECTION
+================================================== */
+
+::selection {
+    background: #4f8cff;
+    color: #ffffff;
+}
+
+
+/* ==================================================
+   SCROLLBAR
+================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08090c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(79, 140, 255, 0.5);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f8cff;
+}
+
+
+/* ==================================================
+   RACING INTRO
+================================================== */
+
+.racing-intro {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #08090c;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    animation:
+        introFadeOut 0.8s ease 2.7s forwards;
+}
+
+
+/* ==================================================
+   RACING GLOW
+================================================== */
+
+.racing-glow {
+    position: absolute;
+
+    width: 550px;
+    height: 550px;
+
+    border-radius: 50%;
+
+    background: rgba(79, 140, 255, 0.16);
+
+    filter: blur(120px);
+
+    animation:
+        racingGlow 2s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   RACING LOGO
+================================================== */
+
+.racing-logo {
+    position: absolute;
+
+    top: 42%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 5;
+
+    color: #ffffff;
+
+    font-size: clamp(45px, 8vw, 100px);
+
+    font-weight: 900;
+
+    letter-spacing: -5px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    animation:
+        racingLogoIn 0.8s ease 0.1s forwards,
+        racingLogoOut 0.5s ease 1.8s forwards;
+}
+
+.racing-logo span {
+    color: #4f8cff;
+
+    text-shadow:
+        0 0 20px rgba(79, 140, 255, 0.8),
+        0 0 50px rgba(79, 140, 255, 0.4);
+}
+
+
+/* ==================================================
+   SPEED LINES
+================================================== */
+
+.speed-lines {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+.speed-line {
+    position: absolute;
+
+    right: -400px;
+
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(79, 140, 255, 0.9),
+        transparent
+    );
+
+    animation:
+        speedLine 1s linear infinite;
+}
+
+.speed-line:nth-child(1) {
+    top: 25%;
+    width: 260px;
+    animation-delay: 0.1s;
+}
+
+.speed-line:nth-child(2) {
+    top: 34%;
+    width: 180px;
+    animation-delay: 0.3s;
+}
+
+.speed-line:nth-child(3) {
+    top: 46%;
+    width: 320px;
+    animation-delay: 0.5s;
+}
+
+.speed-line:nth-child(4) {
+    top: 60%;
+    width: 220px;
+    animation-delay: 0.2s;
+}
+
+.speed-line:nth-child(5) {
+    top: 72%;
+    width: 350px;
+    animation-delay: 0.4s;
+}
+
+
+/* ==================================================
+   RACING CAR
+================================================== */
+
+.racing-car {
+    position: absolute;
+
+    left: -500px;
+
+    bottom: 22%;
+
+    width: 420px;
+
+    z-index: 6;
+
+    animation:
+        racingDrive 1.9s cubic-bezier(.65, 0, .2, 1) 0.35s forwards;
+}
+
+.racing-car img {
+    width: 100%;
+
+    height: 250px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 25px;
+
+    filter:
+        brightness(1.15)
+        contrast(1.2)
+        saturate(1.15)
+        drop-shadow(0 25px 35px rgba(0, 0, 0, 0.6));
+
+    transform: rotate(-2deg);
+}
+
+
+/* ==================================================
+   RACING ROAD
+================================================== */
+
+.racing-road {
+    position: absolute;
+
+    left: 0;
+
+    bottom: 20%;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.racing-road::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 20px;
+
+    width: 100%;
+
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(79, 140, 255, 0.5),
+        transparent
+    );
+}
+
+
+/* ==================================================
+   RACING SUBTITLE
+================================================== */
+
+.racing-subtitle {
+    position: absolute;
+
+    bottom: 12%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 7;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    animation:
+        racingSubtitle 0.8s ease 1.3s forwards;
+}
+
+
+/* ==================================================
+   RACING ANIMATIONS
+================================================== */
+
+@keyframes racingDrive {
+
+    0% {
+        left: -500px;
+
+        transform:
+            translateY(0)
+            scale(0.85)
+            rotate(-2deg);
+    }
+
+    25% {
+        transform:
+            translateY(-10px)
+            scale(0.92)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateY(5px)
+            scale(1)
+            rotate(1deg);
+    }
+
+    75% {
+        transform:
+            translateY(-5px)
+            scale(1.02)
+            rotate(0);
+    }
+
+    100% {
+        left: calc(100% + 500px);
+
+        transform:
+            translateY(0)
+            scale(1.08)
+            rotate(-1deg);
+    }
+}
+
+
+@keyframes speedLine {
+
+    0% {
+        right: -400px;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.9;
+    }
+
+    100% {
+        right: 110%;
+        opacity: 0;
+    }
+}
+
+
+@keyframes racingLogoIn {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.7);
+
+        letter-spacing: 15px;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        letter-spacing: -5px;
+    }
+}
+
+
+@keyframes racingLogoOut {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+@keyframes racingSubtitle {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, 20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0);
+    }
+}
+
+
+@keyframes racingGlow {
+
+    0%,
+    100% {
+        transform: scale(0.85);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+@keyframes introFadeOut {
+
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+/* ==================================================
+   NAVBAR
+================================================== */
+
+.navbar {
+    padding: 22px 0;
+
+    background: rgba(8, 9, 12, 0.55);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    z-index: 1000;
+
+    animation:
+        navbarDrop 0.8s ease 2.9s both;
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+@keyframes navbarDrop {
+
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.navbar:hover {
+    background: rgba(8, 9, 12, 0.78);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.navbar-brand {
+    font-size: 25px;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    color: #ffffff !important;
+
+    transition:
+        transform 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+
+.navbar-brand:hover {
+    transform: scale(1.04);
+
+    text-shadow:
+        0 0 25px rgba(79, 140, 255, 0.4);
+}
+
+
+.navbar-brand span {
+    color: #4f8cff;
+
+    transition: 0.3s ease;
+}
+
+
+.navbar-brand:hover span {
+    text-shadow:
+        0 0 20px rgba(79, 140, 255, 0.9);
+}
+
+
+.nav-link {
+    position: relative;
+
+    color: rgba(255, 255, 255, 0.65) !important;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin: 0 10px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 2px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #4f8cff;
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+
+    transition:
+        width 0.3s ease;
+}
+
+
+.nav-link:hover {
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+}
+
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 25px;
+}
+
+
+.nav-link.active {
+    color: #ffffff !important;
+}
+
+
+/* ==================================================
+   NAVBAR TOGGLER
+================================================== */
+
+.navbar-toggler {
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.navbar-toggler:hover {
+    transform: rotate(5deg);
+
+    border-color: #4f8cff;
+}
+
+
+.navbar-toggler i {
+    color: white;
+}
+
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(39, 89, 180, 0.18),
+            transparent 30%
+        ),
+        #08090c;
+}
+
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(79, 140, 255, 0.025),
+            transparent 70%
+        );
+
+    animation:
+        backgroundMove 8s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes backgroundMove {
+
+    0%,
+    100% {
+        transform: translateX(-10%);
+    }
+
+    50% {
+        transform: translateX(10%);
+    }
+}
+
+
+.hero-glow {
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: -150px;
+    top: 150px;
+
+    background: rgba(53, 112, 255, 0.12);
+
+    filter: blur(120px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    animation:
+        heroGlowMove 6s ease-in-out infinite;
+}
+
+
+@keyframes heroGlowMove {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-70px, 40px)
+            scale(1.15);
+    }
+}
+
+
+/* ==================================================
+   HERO TAG
+================================================== */
+
+.hero-tag {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    animation:
+        fadeUp 1s ease 3s forwards;
+
+    opacity: 0;
+}
+
+
+.hero-tag span {
+    width: 35px;
+
+    height: 1px;
+
+    background: #4f8cff;
+
+    position: relative;
+}
+
+
+.hero-tag span::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: -2px;
+
+    width: 6px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #4f8cff;
+
+    box-shadow:
+        0 0 12px #4f8cff;
+
+    animation:
+        tagPulse 1.5s infinite;
+}
+
+
+@keyframes tagPulse {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateX(28px);
+        opacity: 1;
+    }
+}
+
+
+/* ==================================================
+   HERO TITLE
+================================================== */
+
+.hero h1 {
+    max-width: 650px;
+
+    font-size: clamp(60px, 7vw, 105px);
+
+    line-height: 0.92;
+
+    letter-spacing: -6px;
+
+    font-weight: 800;
+
+    animation:
+        fadeUp 1s ease 3.15s forwards;
+
+    opacity: 0;
+}
+
+
+.hero h1 strong {
+    display: block;
+
+    color: transparent;
+
+    -webkit-text-stroke: 1px #ffffff;
+
+    transition:
+        color 0.4s ease,
+        text-shadow 0.4s ease;
+}
+
+
+.hero h1:hover strong {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 40px rgba(79, 140, 255, 0.35);
+}
+
+
+/* ==================================================
+   HERO DESCRIPTION
+================================================== */
+
+.hero-text {
+    max-width: 480px;
+
+    margin-top: 30px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    animation:
+        fadeUp 1s ease 3.3s forwards;
+
+    opacity: 0;
+}
+
+
+/* ==================================================
+   HERO BUTTONS
+================================================== */
+
+.hero-buttons {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 35px;
+
+    animation:
+        fadeUp 1s ease 3.45s forwards;
+
+    opacity: 0;
+}
+
+
+.btn-primary-custom,
+.btn-outline-custom {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 14px 25px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.btn-primary-custom::before,
+.btn-outline-custom::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.35),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.6s ease;
+}
+
+
+.btn-primary-custom:hover::before,
+.btn-outline-custom:hover::before {
+    left: 130%;
+}
+
+
+.btn-primary-custom {
+    background: #ffffff;
+
+    color: #08090c;
+}
+
+
+.btn-primary-custom:hover {
+    transform: translateY(-5px) scale(1.02);
+
+    background: #4f8cff;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 35px rgba(79, 140, 255, 0.3);
+}
+
+
+.btn-outline-custom {
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+
+    color: #ffffff;
+}
+
+
+.btn-outline-custom:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    border-color:
+        rgba(255, 255, 255, 0.4);
+
+    color: #ffffff;
+
+    transform:
+        translateY(-5px);
+}
+
+
+/* ==================================================
+   HERO STATS
+================================================== */
+
+.hero-stats {
+    display: flex;
+
+    gap: 45px;
+
+    margin-top: 60px;
+
+    animation:
+        fadeUp 1s ease 3.6s forwards;
+
+    opacity: 0;
+}
+
+
+.hero-stats > div {
+    position: relative;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.hero-stats > div:hover {
+    transform: translateY(-7px);
+}
+
+
+.hero-stats > div::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -10px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #4f8cff;
+
+    transition:
+        width 0.3s ease;
+}
+
+
+.hero-stats > div:hover::before {
+    width: 100%;
+}
+
+
+.hero-stats h3 {
+    font-size: 25px;
+
+    font-weight: 800;
+
+    margin-bottom: 3px;
+}
+
+
+.hero-stats p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==================================================
+   HERO CAR
+================================================== */
+
+.hero-car {
+    position: relative;
+
+    height: 600px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    animation:
+        carReveal 1.4s ease 3s forwards;
+
+    opacity: 0;
+}
+
+
+.hero-car img {
+    position: relative;
+
+    width: 120%;
+
+    max-width: 750px;
+
+    height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 35px;
+
+    mix-blend-mode: screen;
+
+    filter:
+        saturate(0.8)
+        contrast(1.1);
+
+    transform: rotate(-2deg);
+
+    z-index: 2;
+
+    transition:
+        transform 0.6s cubic-bezier(.2,.8,.2,1),
+        filter 0.5s ease;
+}
+
+
+.hero-car:hover img {
+    transform:
+        rotate(0deg)
+        scale(1.04)
+        translateY(-8px);
+
+    filter:
+        saturate(1)
+        contrast(1.15)
+        drop-shadow(
+            0 25px 50px
+            rgba(79, 140, 255, 0.15)
+        );
+}
+
+
+/* ==================================================
+   CAR CIRCLE
+================================================== */
+
+.car-circle {
+    position: absolute;
+
+    width: 470px;
+    height: 470px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 0 80px rgba(56, 116, 255, 0.12),
+        inset 0 0 80px rgba(56, 116, 255, 0.05);
+
+    animation:
+        pulseCircle 4s ease-in-out infinite,
+        rotateCircle 20s linear infinite;
+}
+
+
+.car-circle::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 25px;
+
+    border-radius: 50%;
+
+    border:
+        1px dashed rgba(79, 140, 255, 0.15);
+
+    animation:
+        rotateCircleReverse 15s linear infinite;
+}
+
+
+@keyframes rotateCircle {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@keyframes rotateCircleReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
+/* ==================================================
+   CAR LABEL
+================================================== */
+
+.car-label {
+    position: absolute;
+
+    right: 0;
+
+    top: 130px;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    writing-mode: vertical-rl;
+
+    animation:
+        labelFloat 3s ease-in-out infinite;
+}
+
+
+.car-label span {
+    color: #4f8cff;
+
+    font-weight: 800;
+}
+
+
+@keyframes labelFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* ==================================================
+   SCROLL
+================================================== */
+
+.scroll-down {
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.3);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+.scroll-down i {
+    color: #4f8cff;
+
+    animation:
+        scrollBounce 1.5s infinite;
+}
+
+
+/* ==================================================
+   INPUTS
+================================================== */
+
+.form-select,
+.form-control {
+    min-height: 50px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background-color:
+        rgba(255, 255, 255, 0.04);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.form-select:hover,
+.form-control:hover {
+    border-color:
+        rgba(79, 140, 255, 0.35);
+
+    background-color:
+        rgba(255, 255, 255, 0.055);
+}
+
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #4f8cff;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 140, 255, 0.1);
+
+    background-color:
+        rgba(255, 255, 255, 0.06);
+
+    color: #ffffff;
+}
+
+
+.form-select option {
+    background: #111318;
+
+    color: #ffffff;
+}
+
+
+/* ==================================================
+   DATE ICON
+================================================== */
+
+.form-control::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+
+    opacity: 0.7;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.form-control::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.15);
+}
+
+
+/* ==================================================
+   DRIVER OPTIONS
+================================================== */
+
+.driver-options {
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.driver-btn {
+    flex: 1;
+
+    min-height: 50px;
+
+    margin: 0 !important;
+
+    display: flex !important;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color:
+        rgba(255, 255, 255, 0.55) !important;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.driver-btn:hover {
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(79, 140, 255, 0.3);
+}
+
+
+.btn-check:checked + .driver-btn {
+    background: #4f8cff;
+
+    border-color: #4f8cff;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 8px 25px rgba(79, 140, 255, 0.2);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* ==================================================
+   SEARCH BUTTON
+================================================== */
+
+.search-btn {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 50px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #08090c;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    border: none;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.search-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 60%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.6),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.6s ease;
+}
+
+
+.search-btn:hover::before {
+    left: 130%;
+}
+
+
+.search-btn:hover {
+    background: #4f8cff;
+
+    color: #ffffff;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(79, 140, 255, 0.25);
+}
+
+
+/* ==================================================
+   BOOKING MESSAGE
+================================================== */
+
+.booking-message {
+    margin-top: 18px;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    animation:
+        messagePop 0.5s ease;
+}
+
+
+.booking-message i {
+    color: #4f8cff;
+
+    margin-right: 6px;
+}
+
+
+@keyframes messagePop {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==================================================
+   GENERAL CARD ANIMATION
+================================================== */
+
+.card,
+.service-card,
+.car-card,
+.contact-info,
+.contact-form,
+.booking-card {
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+.card:hover,
+.service-card:hover,
+.car-card:hover,
+.contact-info:hover,
+.contact-form:hover,
+.booking-card:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(79, 140, 255, 0.25);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25),
+        0 0 30px rgba(79, 140, 255, 0.05);
+}
+
+
+/* ==================================================
+   IMAGE HOVER
+================================================== */
+
+.card img,
+.service-card img,
+.car-card img {
+    transition:
+        transform 0.6s cubic-bezier(.2,.8,.2,1),
+        filter 0.5s ease;
+}
+
+
+.card:hover img,
+.service-card:hover img,
+.car-card:hover img {
+    transform:
+        scale(1.05);
+
+    filter:
+        brightness(1.08)
+        saturate(1.08);
+}
+
+
+/* ==================================================
+   SOCIAL ICONS
+================================================== */
+
+.social-links a {
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.social-links a:hover {
+    background: #4f8cff;
+
+    color: white;
+
+    border-color: #4f8cff;
+
+    transform:
+        translateY(-5px)
+        rotate(5deg);
+
+    box-shadow:
+        0 10px 25px rgba(79, 140, 255, 0.25);
+}
+
+
+/* ==================================================
+   FAQ
+================================================== */
+
+.accordion-item {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.accordion-item:hover {
+    transform:
+        translateX(5px);
+
+    border-color:
+        rgba(79, 140, 255, 0.2) !important;
+}
+
+
+.accordion-button {
+    transition:
+        color 0.3s ease,
+        padding-left 0.3s ease;
+}
+
+
+.accordion-button:hover {
+    color: #4f8cff !important;
+
+    padding-left: 27px;
+}
+
+
+/* ==================================================
+   GENERAL ANIMATIONS
+================================================== */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes carReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(80px)
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+
+@keyframes pulseCircle {
+
+    0%,
+    100% {
+        transform: scale(1);
+
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.05);
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+
+/* ==================================================
+   FLOATING ANIMATION
+================================================== */
+
+.float-animation {
+    animation:
+        floating 4s ease-in-out infinite;
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-12px);
+    }
+}
+
+
+/* ==================================================
+   GLOW ANIMATION
+================================================== */
+
+.glow-animation {
+    animation:
+        softGlow 3s ease-in-out infinite;
+}
+
+
+@keyframes softGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 rgba(79, 140, 255, 0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(79, 140, 255, 0.15);
+    }
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        margin-top: 20px;
+
+        padding: 20px;
+
+        border-radius: 18px;
+
+        background:
+            rgba(15, 16, 21, 0.95);
+
+        backdrop-filter: blur(20px);
+
+        animation:
+            menuReveal 0.35s ease;
+    }
+
+
+    @keyframes menuReveal {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+    }
+
+
+    .nav-link {
+        padding: 10px 0 !important;
+    }
+
+
+    .hero {
+        padding-top: 100px;
+    }
+
+
+    .hero h1 {
+        font-size:
+            clamp(55px, 11vw, 85px);
+    }
+
+
+    .hero-car {
+        height: 450px;
+
+        margin-top: 20px;
+    }
+
+
+    .hero-car img {
+        width: 100%;
+    }
+
+
+    .booking-section {
+        margin-top: 0;
+    }
+
+
+    .racing-car {
+        width: 330px;
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 576px) {
+
+    .navbar {
+        padding: 16px 0;
+    }
+
+
+    .navbar-brand {
+        font-size: 21px;
+    }
+
+
+    .hero {
+        min-height: auto;
+
+        padding: 130px 0 50px;
+    }
+
+
+    .hero h1 {
+        font-size: 55px;
+
+        letter-spacing: -4px;
+    }
+
+
+    .hero-text {
+        font-size: 14px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+
+    .hero-buttons .btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .hero-stats {
+        gap: 25px;
+
+        margin-top: 40px;
+    }
+
+
+    .hero-stats h3 {
+        font-size: 20px;
+    }
+
+
+    .hero-stats p {
+        font-size: 9px;
+    }
+
+
+    .hero-car {
+        height: 320px;
+    }
+
+
+    .car-circle {
+        width: 300px;
+
+        height: 300px;
+    }
+
+
+    .hero-car img {
+        height: 260px;
+    }
+
+
+    .car-label {
+        right: 5px;
+
+        top: 60px;
+    }
+
+
+    .driver-options {
+        flex-direction: column;
+    }
+
+
+    .scroll-down {
+        display: none;
+    }
+
+
+    /* ==============================================
+       RACING INTRO MOBILE
+    ============================================== */
+
+    .racing-logo {
+        font-size: 45px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .racing-car {
+        width: 280px;
+
+        bottom: 24%;
+    }
+
+
+    .racing-car img {
+        height: 180px;
+    }
+
+
+    .racing-road {
+        bottom: 22%;
+    }
+
+
+    .racing-subtitle {
+        bottom: 14%;
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .racing-glow {
+        width: 350px;
+
+        height: 350px;
+    }
+
+
+    /* ==============================================
+       MOBILE HOVER EFFECTS
+    ============================================== */
+
+    .card:hover,
+    .service-card:hover,
+    .car-card:hover,
+    .contact-info:hover,
+    .contact-form:hover,
+    .booking-card:hover {
+        transform:
+            translateY(-4px);
+    }
+
+
+    .nav-link:hover {
+        transform:
+            translateX(5px);
+    }
+
+
+    .hero-car:hover img {
+        transform:
+            rotate(0deg)
+            scale(1.02);
+    }
+}
+
+
+/* ==================================================
+   REDUCE MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
